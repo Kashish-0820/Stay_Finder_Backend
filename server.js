@@ -11,7 +11,7 @@ const app = express();
 
 app.use(cors({
   origin: [
-    "https://stay-finder-frontend-3.onrender.com",
+    "https://stay-finder-frontend.onrender.com",
     "http://localhost:5173"
   ]
 }));
