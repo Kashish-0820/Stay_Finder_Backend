@@ -10,7 +10,10 @@ const authRoutes = require("./routes/auth");
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin :
+  "https://stay-finder-frontend-3.onrender.com"
+ }));
 app.use(express.json());
 app.use("/api/users", userRoute);
 app.use("listings", listingRoutes);
