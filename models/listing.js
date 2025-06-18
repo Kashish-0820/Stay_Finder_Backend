@@ -9,4 +9,4 @@ const ListingSchema = new
         images: [String],
     });
 
-    module.exports = mongoose.model("Listing", ListingSchema);
+    module.exports = mongoose.model("listing", ListingSchema);

@@ -4,9 +4,17 @@ const Listing = require("../models/listing");
 
 // Get all listings
 router.get("/", async (req, res) => {
-  const listings = await Listing.find();
-  res.json(listings);
+  try {
+    const listings = await Listing.find();
+    res.json(listings);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
+
+
+
+
 
 // Get listing by ID
 router.get("/:id", async (req, res) => {
