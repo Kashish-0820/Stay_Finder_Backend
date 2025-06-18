@@ -3,12 +3,12 @@ const User = require("../models/user");
 
 const router = express.Router();
 
-
+// Register route
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { name, email, password } = req.body;
 
   try {
-    const newUser = new User({ username, email, password });
+    const newUser = new User({ name, email, password });
     await newUser.save();
     res.status(200).json("User registered successfully");
   } catch (err) {
@@ -16,6 +16,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// Login route
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -31,6 +32,5 @@ router.post("/login", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;

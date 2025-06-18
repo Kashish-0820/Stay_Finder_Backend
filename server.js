@@ -2,28 +2,31 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const listingRoutes = require("./routes/listings");
-require("dotenv").config();
-const userRoute = require("./routes/users");
+const bookingRoutes = require("./routes/bookings");
+const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
-const bookingRoute = require("./routes/bookings");
+require("dotenv").config();
 
 const app = express();
+
 app.use(cors({
-  origin: "https://stay-finder-frontend-3.onrender.com"
+  origin: [
+    "https://stay-finder-frontend-3.onrender.com",
+    "http://localhost:5173"
+  ]
 }));
+
 app.use(express.json());
 
-app.use("/api/users", userRoute);
+app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/listings", listingRoutes);   // ✅ yeh sahi hai
-app.use("/api/bookings", bookingRoute);
+app.use("/api/listings", listingRoutes);
+app.use("/api/bookings", bookingRoutes);
 
-// MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
-// Start server
 app.listen(8080, () => {
   console.log("Server is running on port 8080");
 });
